@@ -1,0 +1,5 @@
+# clangd reads the checks from .clang-tidy; compile_commands.json comes
+# from `make compdb`.
+Completion:
+  # Don't add #include lines while completing.
+  HeaderInsertion: Never

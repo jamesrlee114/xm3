@@ -1,0 +1,9 @@
+# Limine boot configuration. The Makefile replaces @CMDLINE@ with the
+# CMDLINE variable (for example: make run CMDLINE=test).
+timeout: 0
+quiet: yes
+
+/xm3
+    protocol: limine
+    path: boot():/boot/kernel.elf
+    cmdline: @CMDLINE@
