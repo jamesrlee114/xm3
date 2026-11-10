@@ -1,0 +1,14 @@
+# clang-tidy checks for xm3, used by `make lint` and by clangd in your
+# editor. See docs/coding-standard.md for why each is on or off.
+Checks: >
+  -*,
+  cert-*,
+  bugprone-*,
+  misc-*,
+  clang-analyzer-*,
+  -bugprone-easily-swappable-parameters,
+  -misc-include-cleaner,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
+  -clang-analyzer-valist.Uninitialized
+WarningsAsErrors: '*'
+HeaderFilterRegex: '^kernel/'

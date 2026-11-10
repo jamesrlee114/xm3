@@ -1,0 +1,44 @@
+# cppcheck suppressions for xm3: MISRA C:2012 deviations and the advisory
+# rules xm3 doesn't follow. The reasons are in docs/coding-standard.md.
+# Format: <rule id>:<file>. A rule with no file applies everywhere.
+
+# Third-party: Limine's protocol header is checked by its authors, not us.
+*:build/download/include/limine.h
+
+# Advisory rules not followed (docs/coding-standard.md, "Advisory rules").
+misra-c2012-2.4
+misra-c2012-2.5
+misra-c2012-2.7
+misra-c2012-8.7
+misra-c2012-8.9
+misra-c2012-11.5
+misra-c2012-15.5
+misra-c2012-17.8
+misra-c2012-18.4
+misra-c2012-20.10
+
+# D1: inline assembly, only in cpu.h (cppcheck reads __asm__ as an
+# undeclared function, hence 17.3).
+misra-c2012-17.3:kernel/cpu.h
+
+# D2: integer <-> pointer conversions.
+misra-c2012-11.4:kernel/lib/string.c
+misra-c2012-11.6:kernel/main.c
+misra-c2012-11.6:kernel/test.c
+
+# D3: <stdarg.h>, for kprintf, ksnprintf and panic.
+misra-c2012-17.1:kernel/lib/printf.c
+misra-c2012-17.1:kernel/kernel.h
+
+# D4: the C library functions a freestanding kernel must define.
+misra-c2012-21.2:kernel/lib/string.h
+misra-c2012-21.2:kernel/lib/string.c
+misra-c2012-8.14:kernel/lib/string.h
+misra-c2012-8.14:kernel/lib/string.c
+
+# D5: the compiler's UBSan handler ABI.
+misra-c2012-21.2:kernel/lib/ubsan.c
+unusedStructMember:kernel/lib/ubsan.c
+
+# D7: Limine's request IDs are hex constants without a U suffix.
+misra-c2012-7.2:kernel/main.c
